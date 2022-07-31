@@ -1,19 +1,39 @@
-android_library_import  {
+android_library {
     name: "FluidUI",
-    aars: ["FluidUI-release.aar"],
-    sdk_version: "system_current",
-    min_sdk_version: "30",
+    sdk_version: "31",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    manifest: "AndroidManifest.xml",
     static_libs: [
+        "kotlin-stdlib",
         "androidx.core_core-ktx",
         "androidx.appcompat_appcompat",
         "androidx.preference_preference",
         "com.google.android.material_material",
         "kotlinx-coroutines-core",
-        "kotlinx-coroutines-android",
-        "kotlin-stdlib",
+        "FluidUI-nodeps"
     ],
+    java_version: "1.7",
+}
+
+android_library_import {
+    name: "FluidUI-nodeps",
+    aars: ["FluidUI.aar"],
+    sdk_version: "31",
     apex_available: [
-        "//apex_available:anyapex",
         "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "14",
+    static_libs: [
+        "kotlin-stdlib",
+        "androidx.core_core-ktx",
+        "androidx.appcompat_appcompat",
+        "androidx.preference_preference",
+        "com.google.android.material_material",
+        "kotlinx-coroutines-core"
     ],
 }
